@@ -84,7 +84,7 @@ class Console extends React.Component {
     const { data } = this.props;
     return (
       <div className="message">
-        <div className="message__avatar" style={{backgroundImage: `url(${data.botSender.botSenderIconUrl})`, backgroundPosition: "center", backgroundSize: "cover"}}></div>
+        <div className="message__avatar" style={{backgroundColor: data.botSender && "#333", backgroundImage: `url(${data.botSender.botSenderIconUrl})`, backgroundPosition: "center", backgroundSize: "cover"}}></div>
         {(data.type === 'text') && <Text text={data.content} />}
         {(data.type === 'image') && <Images image={data.content} />}
         {(data.type === 'video') && <Videos video={data.content} />}
@@ -120,7 +120,89 @@ function Layout(props) {
 }
 
 var state = {
-  msgInfo: []
+  "msgInfo": [
+    {
+      "type": "text",
+      "content": "123",
+      "botSender": {
+        "botSenderId": "2",
+        "botSenderName": "Mikasa",
+        "botSenderIconUrl": "/assets/images/avatar/avatar-cat.png"
+      }
+    },
+    {
+      "type": "imagemap",
+      "content": {
+        "ImagemapPicSize": "",
+        "ImagemapModelType": "m6",
+        "previewMsg": "a",
+        "ImagemapContent": {
+          "type": "imagemap",
+          "baseUrl": "PROVIDE_URL_FROM_YOUR_SERVER",
+          "altText": "This is an imagemap",
+          "baseSize": {
+            "width": 1040,
+            "height": 1040
+          },
+          "actions": [
+            {
+              "type": "message",
+              "area": {
+                "x": 0,
+                "y": 0,
+                "width": 520,
+                "height": 1040
+              },
+              "text": "aa",
+              "keywordValue": "aa"
+            },
+            {
+              "type": "message",
+              "area": {
+                "x": 520,
+                "y": 0,
+                "width": 520,
+                "height": 1040
+              },
+              "text": "bb"
+            }
+          ]
+        }
+      },
+      "botSender": {
+        "botSenderId": "1",
+        "botSenderName": "預設",
+        "botSenderIconUrl": "/assets/images/avatar/avatar-ogilvy.svg"
+      }
+    },
+    {
+      "type": "carousel",
+      "content": {
+        "imgAspectRatio": "square",
+        "previewMsg": "b",
+        "slides": [
+          {
+            "imageUrl": "http://localhost:8888/msgPushImg/2021-05-20/1621491579.png",
+            "title": "1",
+            "desc": "11",
+            "buttons": [
+              {
+                "title": "1a",
+                "action": "postback",
+                "content": "1aaa",
+                "keywordValue": "postback-IjgZyGjO-1621491596405"
+              }
+            ]
+          }
+        ]
+      },
+      "botSender": {
+        "botSenderId": "3",
+        "botSenderName": "Eren",
+        "botSenderIconUrl": "/assets/images/avatar/avatar-dog.png"
+      }
+    }
+  ]
 };
 
 ReactDOM.render(<Layout msgInfo={state} />, document.getElementById('root'));
